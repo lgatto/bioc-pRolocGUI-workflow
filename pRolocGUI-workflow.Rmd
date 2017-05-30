@@ -1,5 +1,5 @@
 ---
-title: "Interactive visualisation of quantitative proteomics data"
+title: "Interactive visualisation of quantitative and spatial proteomics data"
 author: 
   - name: Laurent Gatto
     affiliation: Computational Proteomics Unit, University of Cambridge, Cambridge, UK
@@ -24,6 +24,14 @@ output: BiocWorkflowTools::f1000_article
 ---
 
 
+- focus applications, to be used to interactively explore data within
+  formal and reproducible pipeline.
+- sometimes, interactive exploration is important, and GUI much more
+  efficient than command line.
+- tackle specific needs, rather than single, monolithic software
+- rely on data structures, integrate with more formal analyses pipelines
+- rely on functions that can also be used programmatically, to
+  illustrate/reproduce the findings of the interactive exploration.
 
 # Introduction
 
