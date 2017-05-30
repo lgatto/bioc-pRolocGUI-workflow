@@ -1,51 +1,98 @@
 ---
-title: "*F1000Research* Software Tool Article Template"
+title: "Interactive visualisation of quantitative proteomics data"
 author: 
-  - name: Author Name1
-    affiliation: Address of author1
-  - name: Author Name2
-    affiliation: Address of author2
-abstract: Abstracts should be up to 300 words and provide a succinct summary of the article. Although the abstract should explain why the article might be interesting, care should be taken not to inappropriately over-emphasise the importance of the work described in the article. Citations should not be used in the abstract, and the use of abbreviations should be minimized.
-keywords: Please list up to eight keywords to help readers interested in your article find it more easily.
-bibliography: sample.bib
+  - name: Laurent Gatto
+    affiliation: Computational Proteomics Unit, University of Cambridge, Cambridge, UK
+  - name: Lisa M. Breckels
+    affiliation: Computational Proteomics Unit, University of Cambridge, Cambridge, UK
+abstract: 
+
+In this workflow, we describe *pRolocGUI*, an R/Bioconductor package
+that provides a set of interactive applications to visualise and
+explore quantitative proteomcis data: (1) the *PCA* app, to explore
+experiment-wide clustering patterns, (2) the *classify* app, to
+explore classification thresholding, (3) the *compare* app, to compare
+two experiments via PCA plots, and (4) the *aggregation* app, to
+explore the feature aggregation variability. These focused interactive
+applications rely on well-structured data containers and integrate
+with other sounds analysis methodologies and from other packages,
+namely *MSnbase* and *pRoloc*.
+
+keywords: spatial, proteomics, visualisation, interactivity, GUI
+bibliography: refs.bib
 output: BiocWorkflowTools::f1000_article
 ---
 
+
+
 # Introduction
 
-The introduction provides context as to why the software tool was developed and what need it addresses.  It is good scholarly practice to mention previously developed tools that address similar needs, and why the current tool is needed.
+The introduction provides context as to why the software tool was
+developed and what need it addresses.  It is good scholarly practice
+to mention previously developed tools that address similar needs, and
+why the current tool is needed.
 
 # Methods
 ## Implementation
-For software tool papers, this section should address how the tool works and any relevant technical details required for implementation of the tool by other developers.
+
+For software tool papers, this section should address how the tool
+works and any relevant technical details required for implementation
+of the tool by other developers.
 
 ## Operation
-This part of the methods should include the minimal system requirements needed to run the software and an overview of the workflow for the tool for users of the tool.
+
+This part of the methods should include the minimal system
+requirements needed to run the software and an overview of the
+workflow for the tool for users of the tool.
 
 
 # Results <!-- Optional - only if novel data or analyses are included -->
-This section is only required if the paper includes novel data or analyses, and should be written as a traditional results section.
+
+This section is only required if the paper includes novel data or
+analyses, and should be written as a traditional results section.
 
 # Use Cases <!-- Optional - only if NO new datasets are included -->
-This section is required if the paper does not include novel data or analyses. 
-Examples of input and output files should be provided with some explanatory context.  Any novel or complex variable parameters should also be explained in sufficient detail to allow users to understand and use the tool's functionality.
+
+This section is required if the paper does not include novel data or
+analyses.  Examples of input and output files should be provided with
+some explanatory context.  Any novel or complex variable parameters
+should also be explained in sufficient detail to allow users to
+understand and use the tool's functionality.
 
 # Discussion <!-- Optional - only if novel data or analyses are included -->
-This section is only required if the paper includes novel data or analyses, and should be written in the same style as a traditional discussion section.
-Please include a brief discussion of allowances made (if any) for controlling bias or unwanted sources of variability, and the limitations of any novel datasets.
+
+This section is only required if the paper includes novel data or
+analyses, and should be written in the same style as a traditional
+discussion section.
+
+Please include a brief discussion of allowances made (if any) for
+controlling bias or unwanted sources of variability, and the
+limitations of any novel datasets.
 
 
 # Conclusions <!-- Optional - only if novel data or analyses are included -->
-This section is only required if the paper includes novel data or analyses, and should be written as a traditional conclusion.
+
+This section is only required if the paper includes novel data or
+analyses, and should be written as a traditional conclusion.
 
 # Summary <!-- Optional - only if NO new datasets are included -->
-This section is required if the paper does not include novel data or analyses.  It allows authors to briefly summarize the key points from the article.
+
+This section is required if the paper does not include novel data or
+analyses.  It allows authors to briefly summarize the key points from
+the article.
 
 # Data availability <!-- Optional - only if novel data or analyses are included -->
-Please add details of where any datasets that are mentioned in the paper, and that have not have not previously been formally published, can be found.  If previously published datasets are mentioned, these should be cited in the references, as per usual scholarly conventions.
+
+Please add details of where any datasets that are mentioned in the
+paper, and that have not have not previously been formally published,
+can be found.  If previously published datasets are mentioned, these
+should be cited in the references, as per usual scholarly conventions.
 
 # Software availability
-This section will be generated by the Editorial Office before publication. Authors are asked to provide some initial information to assist the Editorial Office, as detailed below.
+
+This section will be generated by the Editorial Office before
+publication. Authors are asked to provide some initial information to
+assist the Editorial Office, as detailed below.
 
 1. URL link to where the software can be downloaded from or used by a non-coder (AUTHOR TO PROVIDE; optional)
 2. URL link to the author's version control system repository containing the source code (AUTHOR TO PROVIDE; required)
@@ -55,22 +102,33 @@ This section will be generated by the Editorial Office before publication. Autho
 
 
 # Author contributions
-In order to give appropriate credit to each author of an article, the individual
-contributions of each author to the manuscript should be detailed in this section. We
-recommend using author initials and then stating briefly how they contributed.
+
+In order to give appropriate credit to each author of an article, the
+individual contributions of each author to the manuscript should be
+detailed in this section. We recommend using author initials and then
+stating briefly how they contributed.
 
 # Competing interests
-All financial, personal, or professional competing interests for any of the authors that
-could be construed to unduly influence the content of the article must be disclosed and will be displayed alongside the article. If there are no relevant competing interests to declare, please add the following: 'No competing interests were disclosed'.
+
+All financial, personal, or professional competing interests for any
+of the authors that could be construed to unduly influence the content
+of the article must be disclosed and will be displayed alongside the
+article. If there are no relevant competing interests to declare,
+please add the following: 'No competing interests were disclosed'.
 
 # Grant information
-Please state who funded the work discussed in this article, whether it is your employer, a grant funder etc. Please do not list funding that you have that is not relevant to this
-specific piece of research. For each funder, please state the funder’s name, the grant
-number where applicable, and the individual to whom the grant was assigned.
-If your work was not funded by any grants, please include the line: 'The author(s)
-declared that no grants were involved in supporting this work.'
+
+Please state who funded the work discussed in this article, whether it
+is your employer, a grant funder etc. Please do not list funding that
+you have that is not relevant to this specific piece of research. For
+each funder, please state the funder’s name, the grant number where
+applicable, and the individual to whom the grant was assigned.  If
+your work was not funded by any grants, please include the line: 'The
+author(s) declared that no grants were involved in supporting this
+work.'
 
 # Acknowledgments
+
 This section should acknowledge anyone who contributed to the research or the
 article but who does not qualify as an author based on the criteria provided earlier
 (e.g. someone or an organization that provided writing assistance). Please state how
