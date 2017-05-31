@@ -59,6 +59,9 @@ applications are called according to the argument `app` in the
   `MSnSet` instances, e.g. this might be of help for the analyses of
   changes in protein localisation in different conditions.
 
+* The `aggregation` application allow the compare the variability and
+  effect of feature aggregation when aggregating spectra and/or
+  peptides into protein groups.
 
 ## Getting started
 
