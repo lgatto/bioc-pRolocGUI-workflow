@@ -15,6 +15,11 @@ output: BiocWorkflowTools::f1000_article
 suppressPackageStartupMessages(library("BiocStyle"))
 ```
 
+
+
+# Introduction
+
+
 - focus applications, to be used to interactively explore data within
   formal and reproducible pipeline.
 - sometimes, interactive exploration is important, and GUI much more
@@ -24,21 +29,30 @@ suppressPackageStartupMessages(library("BiocStyle"))
 - rely on functions that can also be used programmatically, to
   illustrate/reproduce the findings of the interactive exploration.
 
+The Bioconductor projet is well known for emphasising reproducible
+research best practice through programmatic data analysis and we have
+followed this principle in our efforts to provide robust and
+rebroducible tools for the analysis of quantitative proteomics data
+analysis. There are situtations where programmatic data manipulation
+is however not the most efficient way to explore the data, and where
+interactive graphical user interfaces (GUIs) offer great
+benefits. Since the availability of the \CRANpkg{shiny} package
+[@shiny], it has become relatively easy for R programmers to the
+development of such interfaces. It however remains important to keep
+the principles and reproducible and rigorous data analysis at the
+finger tips of the users by allowing to easily transfer findings from
+both interfaces, programmatic and graphical. 
 
+This workflow describes interactive GUIs implemented in the 
+`r Biocpkg("pRolocGUI")` package.  The package is based on the `MSnSet`
+class definitions of `r Biocpkg("MSnbase")` and on the functions
+defined in the `r Biocpkg("pRoloc")` package. `r Biocpkg("pRolocGUI")`
+is intended for, but not limited to, the interactive visualisation and
+analysis of quantitative spatial proteomics data. 
 
-# Introduction
-
-This vignette describes the implemented functionality of the
-`r Biocpkg("pRolocGUI")` package. The package is based on the `MSnSet` class
-definitions of `r Biocpkg("MSnbase")` and on the functions defined in
-the `r Biocpkg("pRoloc")` package. `r Biocpkg("pRolocGUI")` is
-intended for, but not limited to, the interactive visualisation and
-analysis of quantitative spatial proteomics data. To achieve
-reactivity and interactivity, `r Biocpkg("pRolocGUI")` relies on the
-[`shiny`](http://www.rstudio.com/shiny/) framework. We recommend some
-familiarity with the `MSnSet` class (see `?MSnSet` for details) and
-the `pRoloc` vignette (see `vignette("pRoloc-tutorial")`) before using
-`r Biocpkg("pRolocGUI")`.
+We recommend some familiarity with the `MSnSet` class (see `?MSnSet`
+for details) and the `pRoloc` vignette (see
+`vignette("pRoloc-tutorial")`) before using `r Biocpkg("pRolocGUI")`.
 
 There are 3 applications distributed with `r Biocpkg("pRolocGUI")`
 which are wrapped and launched by the `pRolocVis` function. These 3
