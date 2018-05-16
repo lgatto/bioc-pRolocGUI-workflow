@@ -19,7 +19,7 @@ suppressPackageStartupMessages(library("BiocStyle"))
 
 # Introduction
 
-
+- tailored software and infrastructre to work straight out of the box
 - focus applications, to be used to interactively explore data within
   formal and reproducible pipeline.
 - sometimes, interactive exploration is important, and GUI much more
@@ -28,37 +28,44 @@ suppressPackageStartupMessages(library("BiocStyle"))
 - rely on data structures, integrate with more formal analyses pipelines
 - rely on functions that can also be used programmatically, to
   illustrate/reproduce the findings of the interactive exploration.
+- ubiquitous tool for the exploration, understanding and communication of 
+  spatial proteomics information. 
 
-The Bioconductor projet is well known for emphasising reproducible
-research best practice through programmatic data analysis and we have
-followed this principle in our efforts to provide robust and
-rebroducible tools for the analysis of quantitative proteomics data
-analysis. There are situtations where programmatic data manipulation
-is however not the most efficient way to explore the data, and where
+Spatial proteomics involves the systematic study of proteins and their
+assignments to distinct spatial cellular subcompartments. Quantitative 
+mass spectrometry based protocols are becoming popular for the generation of  
+high quality proteome-wide data [xxx]. In our previous workflow [xxx] 
+we guided readers through a typical pipeline for the analysis of such 
+data, using several dedicated R Bioconductor [xxx] packages. The Bioconductor  
+project is well known for emphasising reproducible research best practice  
+through programmatic data analysis and we have followed this principle in our 
+efforts to provide robust and reproducible tools for the analysis quantitative 
+mass spectrometry data. 
+
+There are situtations however where programmatic data manipulation
+is not the most efficient way to explore the data, and where
 interactive graphical user interfaces (GUIs) offer great
 benefits. Since the availability of the \CRANpkg{shiny} package
-[@shiny], it has become relatively easy for R programmers to the
-development of such interfaces. It however remains important to keep
+[@shiny], it has become relatively easy for R programmers to
+develop such interfaces. It however remains important to keep
 the principles and reproducible and rigorous data analysis at the
-finger tips of the users by allowing to easily transfer findings from
-both interfaces, programmatic and graphical. 
+finger tips of the users by allowing one to easily transfer findings
+from both interfaces, programmatic and graphical. 
 
 This workflow describes interactive GUIs implemented in the 
 `r Biocpkg("pRolocGUI")` package.  The package is based on the `MSnSet`
 class definitions of `r Biocpkg("MSnbase")` and on the functions
-defined in the `r Biocpkg("pRoloc")` package. `r Biocpkg("pRolocGUI")`
-is intended for, but not limited to, the interactive visualisation and
-analysis of quantitative spatial proteomics data. 
+defined in the `r Biocpkg("pRoloc")` package. Building on the 
+existing functionality of these sister packages, `r Biocpkg("pRolocGUI")`
+works straight out-of-the-box for already defined `MSnSet` 
+datasets. The package is intended for, but not limited to, the interactive 
+visualisation and analysis of quantitative spatial proteomics data. 
 
-We recommend some familiarity with the `MSnSet` class (see `?MSnSet`
+We strongly recommend some familiarity with the `MSnSet` class (see `?MSnSet`
 for details) and the `pRoloc` vignette (see
-`vignette("pRoloc-tutorial")`) before using `r Biocpkg("pRolocGUI")`.
-
-There are 3 applications distributed with `r Biocpkg("pRolocGUI")`
-which are wrapped and launched by the `pRolocVis` function. These 3
-applications are called according to the argument `app` in the
-`pRolocVis` function which may be one of "main", "classify" or
-"compare".
+`vignette("pRoloc-tutorial")`) before using `r Biocpkg("pRolocGUI")`. 
+There are 4 applications distributed with `r Biocpkg("pRolocGUI")`
+which take `MSnSet` (or `MSnSetList`) data structure as input.
 
 * The `main` application launches a Principal Components Analysis
   (PCA) plot of the data, with an alternate profiles tab for
@@ -77,47 +84,87 @@ applications are called according to the argument `app` in the
   effect of feature aggregation when aggregating spectra and/or
   peptides into protein groups.
 
+
 ## Getting started
 
-Once R is started, the first step to enable functionality of the
-package is to load it, as shown in the code chunk below.  We also load
-the `r Biocpkg("pRolocdata")` data package, which contains
-quantitative proteomics datasets.
+### Package installation 
+
+The first step is to install the `r Biocpkg("pRolocGUI")` package 
+from Bioconductor. Once R is started we can install the package 
+as follows:
+
+```{r loadPkgs, message = FALSE, warning = FALSE} 
+source("https://bioconductor.org/biocLite.R")
+biocLite(c("pRolocGUI", "pRolocdata"))
+```
+
+Note, we also install the `r Biocpkg("pRolocdata")` package which
+contains tens of pre-formatted quantitative proteomics datasets 
+from various species. We will load datasets from this package to 
+demonstrate the package functionality during this workflow.
+
+Once a package has been installed, it needs to be loaded for its 
+functionality to become available in the R session; this is done 
+with the library function as shown in the code chunk below.
 
 ```{r loadPkgs, message = FALSE, warning = FALSE} 
 library("pRolocGUI")
 library("pRolocdata")
 ```
 
-We begin by loading the dataset `hyperLOPIT2015` from the `pRolocdata`
-data package. The data was produced from using the hyperLOPIT
-technology on mouse E14TG2a embryonic stem cells ([Christoforou et al 2016](http://www.nature.com/ncomms/2016/160112/ncomms9992/full/ncomms9992.html)). 
-For more background spatial proteomics data anlayses please see 
-[Gatto et al 2010](http://www.ncbi.nlm.nih.gov/pubmed/21080489), 
-[Gatto et al 2014](http://www.ncbi.nlm.nih.gov/pubmed/24846987) and also the 
-[`pRoloc` tutorial vignette](http://bioconductor.org/packages/release/bioc/vignettes/pRoloc/inst/doc/pRoloc-tutorial.html). 
+This procedure is also applicable to any packages, from
+\href{https://cran.r-project.org/}{CRAN}, Bioconductor 
+and GitHub. 
+
+
+### Loading the data 
+
+Following on from our previous Bioconductor workflow for processing and
+analysing proteomics data [xxx], we load the `hyperLOPIT2015` dataset from the
+`pRolocdata` package to showcase the interactive applications in `pRolocGUI` 
+by using the function `data`.
 
 ```{r loadData, echo = TRUE, message = FALSE, warning = FALSE}
 data(hyperLOPIT2015) 
 ```
 
+The `hyperLOPIT2015` dataset is a high resolution spatial proteomics dataset
+generated from pluripotent mouse embryonic stem cells (E14TG2a) [xxx]. 
+All the functions in the `pRolocGUI` package rely on an 
+`MSnSet` object (or `MSnSetList` of length 2) as input. Users are referred to the 
+`vignette("MSnbase-io")` or`pRoloc` workflow for a step-by-step guide 
+on how to create and import their own `MSnSet` datasets.
+
+For more background on spatial proteomics data anlayses in general please see 
+[Gatto et al 2010](http://www.ncbi.nlm.nih.gov/pubmed/21080489), 
+[Gatto et al 2014](http://www.ncbi.nlm.nih.gov/pubmed/24846987) and also the 
+[`pRoloc` tutorial vignette](http://bioconductor.org/packages/release/bioc/vignettes/pRoloc/inst/doc/pRoloc-tutorial.html). If you have questions about this workflow 
+in particular, or about other Bioconductor packages in general, they 
+are best asked on the \href{https://support.bioconductor.org/}{Bioconductor support site}
+following the\href{http://www.bioconductor.org/help/support/posting-guide/}{posting
+  guidelines}.
+
+
+## The `pRolocVis` function
+
 To load one of the applications using the `pRolocVis` function and
 view the data you are required to specify a minimum of one key
 argument, `object`, which is the data to display and must be of 
 class `MSnSet` (or a `MSnSetList` of
-length 2 for the `compare` application). Please see
-`vignette("pRoloc-tutorial")` or `vignette("MSnbase-io")` for
-importing and loading data. The argument `app` tells the `pRolocVis`
+length 2 for the `compare` application).  
+
+The argument `app` tells the `pRolocVis`
 function what type of application to load. One can choose
-from: `"main"` (default), `"classify"`, `"compare"`.  The optional 
-argument `fcol` (and `fcol1` and `fcol2` for the compare app)
-can be used which allows the user to specify the 
-feature meta-data label(s) (`fData` column name(s)) to be plotted. 
-The default is `markers` (i.e. the labelled data) for the PCA and compare 
-For the classification app one must specify the prediction column i.e. the
-feature meta-data label that corresponds to the column containing the
-classification results, generated from running a supervised machine
-learning analysis (see [below](#the-classify-application)).
+from: `"main"` (default), `"classify"`, `"compare"`, or `"aggregate"`.  
+The optional argument `fcol` (or `fcol1` and `fcol2` for the compare app)
+can be used which allows the user to specify the column which contains
+the feature meta-data label(s) (the `fData` column name(s)) e.g. the markers
+to be plotted. The default is called `markers` (i.e. the labelled data) 
+for the PCA and compare applications. For the classification app one must 
+specify the prediction column i.e. the feature meta-data label that 
+corresponds to the column containing the classification results, generated 
+from running a supervised machine learning analysis 
+(see [below](#the-classify-application)).
 
 For example, to load the main `pRolocVis` application:
 
@@ -160,6 +207,13 @@ conditions etc.  Two PCA plots are loaded side-by-side and one can
 search and identify common proteins between the two data sets. As per the 
 main application there is also a protein profiles tab to allow one to look
 at the patterns of protein profiles of interest in each dataset. 
+* The aggregation application allows one to compare the effects of 
+feature aggregation. For example, when combining peptides to proteins, 
+there are several methods one can use, and it is often useful to 
+visualise the distribution of individual peptides belonging to the same 
+protein group before and after aggregation as outliers may be present that
+may wish to be discarded prior to combination.
+NOTE: See aggregation issues on github
 
 # The `main` application
 
