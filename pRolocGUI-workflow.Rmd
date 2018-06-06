@@ -19,15 +19,7 @@ suppressPackageStartupMessages(library("BiocStyle"))
 
 # Introduction
 
-- tailored software and infrastructre to work straight out of the box
-- focus applications, to be used to interactively explore data within
-  formal and reproducible pipeline.
-- sometimes, interactive exploration is important, and GUI much more
-  efficient than command line.
 - tackle specific needs, rather than single, monolithic software
-- rely on data structures, integrate with more formal analyses pipelines
-- rely on functions that can also be used programmatically, to
-  illustrate/reproduce the findings of the interactive exploration.
 - ubiquitous tool for the exploration, understanding and communication of 
   spatial proteomics information. 
 
@@ -45,8 +37,8 @@ mass spectrometry data.
 There are situtations however where programmatic data manipulation
 is not the most efficient way to explore the data, and where
 interactive graphical user interfaces (GUIs) offer great
-benefits. Since the availability of the \CRANpkg{shiny} package
-[@shiny], it has become relatively easy for R programmers to
+benefits. Since the availability of the `r CRANpkg("shiny")` package
+[xxx], it has become relatively easy for R programmers to
 develop such interfaces. It however remains important to keep
 the principles and reproducible and rigorous data analysis at the
 finger tips of the users by allowing one to easily transfer findings
@@ -56,13 +48,15 @@ This workflow describes interactive GUIs implemented in the
 `r Biocpkg("pRolocGUI")` package.  The package is based on the `MSnSet`
 class definitions of `r Biocpkg("MSnbase")` and on the functions
 defined in the `r Biocpkg("pRoloc")` package. Building on the 
-existing functionality of these sister packages, `r Biocpkg("pRolocGUI")`
+existing functionality of these packages, `r Biocpkg("pRolocGUI")`
 works straight out-of-the-box for already defined `MSnSet` 
-datasets. The package is intended for, but not limited to, the interactive 
+datasets. This allows users the benefit of interactive data 
+exploration within a formal and reproducible pipeline. 
+This package is intended for, but not limited to, the interactive 
 visualisation and analysis of quantitative spatial proteomics data. 
 
-We strongly recommend some familiarity with the `MSnSet` class (see `?MSnSet`
-for details) and the `pRoloc` vignette (see
+We strongly recommend some familiarity with the `MSnSet` class 
+(see `?MSnSet` for details) and the `pRoloc` vignette (see
 `vignette("pRoloc-tutorial")`) before using `r Biocpkg("pRolocGUI")`. 
 There are 4 applications distributed with `r Biocpkg("pRolocGUI")`
 which take `MSnSet` (or `MSnSetList`) data structure as input.
@@ -84,7 +78,6 @@ which take `MSnSet` (or `MSnSetList`) data structure as input.
   effect of feature aggregation when aggregating spectra and/or
   peptides into protein groups.
 
-
 ## Getting started
 
 ### Package installation 
@@ -93,7 +86,7 @@ The first step is to install the `r Biocpkg("pRolocGUI")` package
 from Bioconductor. Once R is started we can install the package 
 as follows:
 
-```{r loadPkgs, message = FALSE, warning = FALSE} 
+```{r installPkgs, message = FALSE, warning = FALSE, eval=FALSE} 
 source("https://bioconductor.org/biocLite.R")
 biocLite(c("pRolocGUI", "pRolocdata"))
 ```
