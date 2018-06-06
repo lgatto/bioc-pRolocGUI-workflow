@@ -7,7 +7,7 @@ author:
     affiliation: Computational Proteomics Unit, University of Cambridge, Cambridge, UK
 abstract: "In this workflow, we describe *pRolocGUI*, an R/Bioconductor package that provides a set of interactive applications to visualise and explore quantitative proteomcis data: (1) the *PCA* app, to explore experiment-wide clustering patterns, (2) the *classify* app, to explore classification thresholding, (3) the *compare* app, to compare two experiments via PCA plots, and (4) the *aggregation* app, to explore the feature aggregation variability. These focused interactive applications rely on well-structured data containers and integrate with other sounds analysis methodologies and from other packages, namely *MSnbase* and *pRoloc*."
 keywords: spatial, proteomics, visualisation, interactivity, GUI
-bibliography: refs.bib
+bibliography: refs
 output: BiocWorkflowTools::f1000_article
 ---
 
@@ -19,47 +19,54 @@ suppressPackageStartupMessages(library("BiocStyle"))
 
 # Introduction
 
-- tackle specific needs, rather than single, monolithic software
-- ubiquitous tool for the exploration, understanding and communication of 
-  spatial proteomics information. 
-
 Spatial proteomics involves the systematic study of proteins and their
-assignments to distinct spatial cellular subcompartments. Quantitative 
-mass spectrometry based protocols are becoming popular for the generation of  
-high quality proteome-wide data [xxx]. In our previous workflow [xxx] 
-we guided readers through a typical pipeline for the analysis of such 
-data, using several dedicated R Bioconductor [xxx] packages. The Bioconductor  
-project is well known for emphasising reproducible research best practice  
-through programmatic data analysis and we have followed this principle in our 
-efforts to provide robust and reproducible tools for the analysis quantitative 
-mass spectrometry data. 
+assignments to distinct spatial cellular subcompartments. Quantitative
+mass spectrometry based protocols are becoming popular for the
+generation  of proteome-wide data [@Itzhak:2016, @Christoforou:2016].
+In our previous workflow [@Breckels:f1000] we guided readers through a
+typical pipeline for the analysis of such data, using several
+dedicated R Bioconductor [@Huber:2015] packages. The Bioconductor
+project is well known for emphasising reproducible research best
+practice through programmatic data analysis and we have followed this
+principle in our efforts to provide robust and reproducible tools for
+the analysis quantitative mass spectrometry data. 
 
-There are situtations however where programmatic data manipulation
-is not the most efficient way to explore the data, and where
-interactive graphical user interfaces (GUIs) offer great
-benefits. Since the availability of the `r CRANpkg("shiny")` package
-[xxx], it has become relatively easy for R programmers to
-develop such interfaces. It however remains important to keep
-the principles and reproducible and rigorous data analysis at the
-finger tips of the users by allowing one to easily transfer findings
-from both interfaces, programmatic and graphical. 
+There are situtations however where programmatic data manipulation is
+not the most efficient way to explore the data, and where interactive
+graphical user interfaces (GUIs) offer great benefits. Since the
+availability of the `r CRANpkg("shiny")` package [@shiny], it has
+become relatively easy for R programmers to develop such interfaces.
+It however remains important to keep the principles of reproducible
+and rigorous data analysis at the finger tips of the users by allowing
+one to easily transfer findings from both interfaces, programmatic and
+graphical. 
 
-This workflow describes interactive GUIs implemented in the 
+This workflow describes the interactive GUIs implemented in the 
 `r Biocpkg("pRolocGUI")` package.  The package is based on the `MSnSet`
-class definitions of `r Biocpkg("MSnbase")` and on the functions
-defined in the `r Biocpkg("pRoloc")` package. Building on the 
-existing functionality of these packages, `r Biocpkg("pRolocGUI")`
-works straight out-of-the-box for already defined `MSnSet` 
-datasets. This allows users the benefit of interactive data 
-exploration within a formal and reproducible pipeline. 
-This package is intended for, but not limited to, the interactive 
-visualisation and analysis of quantitative spatial proteomics data. 
+class definitions of `r Biocpkg("MSnbase")` and on the functions  
+defined in the `r Biocpkg("pRoloc")` package. Building on the existing
+functionality of these packages, `r Biocpkg("pRolocGUI")` works
+straight out-of-the-box for already defined `MSnSet` datasets. This
+gives users the benefit of interactive data exploration within a
+formal and reproducible pipeline. This package is intended for, but
+not limited to, the interactive visualisation and analysis of
+quantitative spatial proteomics data. 
 
-We strongly recommend some familiarity with the `MSnSet` class 
-(see `?MSnSet` for details) and the `pRoloc` vignette (see
-`vignette("pRoloc-tutorial")`) before using `r Biocpkg("pRolocGUI")`. 
-There are 4 applications distributed with `r Biocpkg("pRolocGUI")`
-which take `MSnSet` (or `MSnSetList`) data structure as input.
+Following on from our spatial proteomics data analysis workflow
+[@Breckels:f1000] we use the a dataset produced using the hyperLOPIT
+technology [@Christoforou:2016] from mouse embryonic stem cells to
+showcase the main features of each interactive application. 
+These data, along with tens of other pre-formatted `MSnSet` datasets 
+are available in the `r Biocpkg("pRolocdata")` package.
+
+Before embarking on this workflow and using `r Biocpkg("pRolocGUI")` 
+we strongly recommend some familiarity with the `MSnSet` class (see 
+`?MSnSet` for details) and the `pRoloc` vignette (see 
+`vignette("pRoloc-tutorial")`).
+
+In the proceeding sections we describe the functionality of the
+4 applications distributed with `r Biocpkg("pRolocGUI")`. Each
+of which take `MSnSet` (or `MSnSetList`) data structure as input.
 
 * The `main` application launches a Principal Components Analysis
   (PCA) plot of the data, with an alternate profiles tab for
@@ -77,6 +84,7 @@ which take `MSnSet` (or `MSnSetList`) data structure as input.
 * The `aggregation` application allow the compare the variability and
   effect of feature aggregation when aggregating spectra and/or
   peptides into protein groups.
+
 
 ## Getting started
 
@@ -103,9 +111,9 @@ with the library function as shown in the code chunk below.
 ```{r loadPkgs, message = FALSE, warning = FALSE} 
 library("pRolocGUI")
 library("pRolocdata")
-```
+``` 
 
-This procedure is also applicable to any packages, from
+This procedure is also applicable to any R packages, from
 \href{https://cran.r-project.org/}{CRAN}, Bioconductor 
 and GitHub. 
 
@@ -113,7 +121,7 @@ and GitHub.
 ### Loading the data 
 
 Following on from our previous Bioconductor workflow for processing and
-analysing proteomics data [xxx], we load the `hyperLOPIT2015` dataset from the
+analysing proteomics data [@Breckels:f1000], we load the `hyperLOPIT2015` dataset from the
 `pRolocdata` package to showcase the interactive applications in `pRolocGUI` 
 by using the function `data`.
 
@@ -122,10 +130,10 @@ data(hyperLOPIT2015)
 ```
 
 The `hyperLOPIT2015` dataset is a high resolution spatial proteomics dataset
-generated from pluripotent mouse embryonic stem cells (E14TG2a) [xxx]. 
+generated from pluripotent mouse embryonic stem cells (E14TG2a) [@Christoforou:2016]. 
 All the functions in the `pRolocGUI` package rely on an 
 `MSnSet` object (or `MSnSetList` of length 2) as input. Users are referred to the 
-`vignette("MSnbase-io")` or`pRoloc` workflow for a step-by-step guide 
+`vignette("MSnbase-io")` or the `pRoloc` workflow for a step-by-step guide 
 on how to create and import their own `MSnSet` datasets.
 
 For more background on spatial proteomics data anlayses in general please see 
