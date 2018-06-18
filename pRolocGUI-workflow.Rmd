@@ -43,7 +43,7 @@ graphical.
 
 This workflow describes the interactive GUIs implemented in the 
 `r Biocpkg("pRolocGUI")` package.  The package is based on the `MSnSet`
-class definitions of `r Biocpkg("MSnbase")` and on the functions  
+class definitions of `r Biocpkg("MSnbase")` and on the functions 
 defined in the `r Biocpkg("pRoloc")` package. Building on the existing
 functionality of these packages, `r Biocpkg("pRolocGUI")` works
 straight out-of-the-box for already defined `MSnSet` datasets. This
@@ -55,11 +55,10 @@ quantitative spatial proteomics data.
 Following on from our spatial proteomics data analysis workflow
 [@Breckels:f1000] we use the a dataset produced using the hyperLOPIT
 technology [@Christoforou:2016] from mouse embryonic stem cells to
-showcase the main features of each interactive application. 
-These data, along with tens of other pre-formatted `MSnSet` datasets 
-are available in the `r Biocpkg("pRolocdata")` package.
-
-Before embarking on this workflow and using `r Biocpkg("pRolocGUI")` 
+showcase the main features of each interactive application. These 
+data, along with tens of other pre-formatted `MSnSet` datasets 
+are available in the `r Biocpkg("pRolocdata")` package. Before 
+embarking on this workflow and using `r Biocpkg("pRolocGUI")` 
 we strongly recommend some familiarity with the `MSnSet` class (see 
 `?MSnSet` for details) and the `pRoloc` vignette (see 
 `vignette("pRoloc-tutorial")`).
@@ -135,6 +134,8 @@ All the functions in the `pRolocGUI` package rely on an
 `MSnSet` object (or `MSnSetList` of length 2) as input. Users are referred to the 
 `vignette("MSnbase-io")` or the `pRoloc` workflow for a step-by-step guide 
 on how to create and import their own `MSnSet` datasets.
+
+### Background and getting help
 
 For more background on spatial proteomics data anlayses in general please see 
 [Gatto et al 2010](http://www.ncbi.nlm.nih.gov/pubmed/21080489), 
