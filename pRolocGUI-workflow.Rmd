@@ -48,9 +48,9 @@ defined in the `r Biocpkg("pRoloc")` package. Building on the existing
 functionality of these packages, `r Biocpkg("pRolocGUI")` works
 straight out-of-the-box for already defined `MSnSet` datasets. This
 gives users the benefit of interactive data exploration within a
-formal and reproducible pipeline. This package is intended for, but
-not limited to, the interactive visualisation and analysis of
-quantitative spatial proteomics data. 
+formal and reproducible pipeline. This package is intended for the 
+interactive visualisation and analysis of quantitative spatial 
+proteomics data. 
 
 Following on from our spatial proteomics data analysis workflow
 [@Breckels:f1000] we use the a dataset produced using the hyperLOPIT
@@ -63,26 +63,38 @@ we strongly recommend some familiarity with the `MSnSet` class (see
 `?MSnSet` for details) and the `pRoloc` vignette (see 
 `vignette("pRoloc-tutorial")`).
 
-In the proceeding sections we describe the functionality of the
-4 applications distributed with `r Biocpkg("pRolocGUI")`. Each
-of which take `MSnSet` (or `MSnSetList`) data structure as input.
+There are 4 applications (apps) distributed with 
+`r Biocpkg("pRolocGUI")`; these apps are called `main`, `classify`, 
+`compare` and `aggregation`. Each app takes a `MSnSet` (or 
+`MSnSetList`) data structure as input and features an interactive 
+principal components analysis (PCA) plot of the data. 
+Very briefly, the `main` application features a searchable 
+and clickable PCA plot, data table and protein profiles plot. The 
+`classify` app allows a user the visualisation of machine learning 
+classification results. The `compare` app has been created to allow 
+the comparsion of two `MSnSet` datasets. Finally, the `aggregation` 
+app allows the comparison of the variability and effect of feature 
+aggregation when aggregating spectra and/or peptides into protein 
+groups. In the proceeding sections we describe the functionality and
+the use-cases of each app in detail.
 
-* The `main` application launches a Principal Components Analysis
-  (PCA) plot of the data, with an alternate profiles tab for
-  visualisation of protein profiles, it also features a searchable
-  data table for the identification of proteins of interest.
 
-* The `classify` application has been designed to view machine
-  learning classification results according to user-specified
-  thresholds for the assignment of sub-cellular location.
+<!-- * The `main` application launches a Principal Components Analysis -->
+<!--   (PCA) plot of the data, with an alternate profiles tab for -->
+<!--   visualisation of protein profiles, it also features a searchable -->
+<!--   data table for the identification of proteins of interest. -->
 
-* The `compare` application allows the comparison of two comparable
-  `MSnSet` instances, e.g. this might be of help for the analyses of
-  changes in protein localisation in different conditions.
+<!-- * The `classify` application has been designed to view machine -->
+<!--   learning classification results according to user-specified -->
+<!--   thresholds for the assignment of sub-cellular location. -->
 
-* The `aggregation` application allow the compare the variability and
-  effect of feature aggregation when aggregating spectra and/or
-  peptides into protein groups.
+<!-- * The `compare` application allows the comparison of two comparable -->
+<!--   `MSnSet` instances, e.g. this might be of help for the analyses of -->
+<!--   changes in protein localisation in different conditions. -->
+
+<!-- * The `aggregation` application allow the compare the variability and -->
+<!--   effect of feature aggregation when aggregating spectra and/or -->
+<!--   peptides into protein groups. -->
 
 
 ## Getting started
@@ -114,24 +126,27 @@ library("pRolocdata")
 
 This procedure is also applicable to any R packages, from
 \href{https://cran.r-project.org/}{CRAN}, Bioconductor 
-and GitHub. 
+and GitHub. Further package installation information can be 
+obtained from the Bioconductor installation help page.
 
 
 ### Loading the data 
 
-Following on from our previous Bioconductor workflow for processing and
-analysing proteomics data [@Breckels:f1000], we load the `hyperLOPIT2015` dataset from the
-`pRolocdata` package to showcase the interactive applications in `pRolocGUI` 
-by using the function `data`.
+Following on from our previous Bioconductor workflow for processing 
+and analysing proteomics data [@Breckels:f1000], we load the
+`hyperLOPIT2015` dataset from the `pRolocdata` package to showcase the interactive applications in `pRolocGUI`. This dataset is a high 
+resolution spatial proteomics dataset generated from pluripotent mouse embryonic stem cells (E14TG2a) [@Christoforou:2016]. 
+
+We load the dataset by using the function `data`.
 
 ```{r loadData, echo = TRUE, message = FALSE, warning = FALSE}
 data(hyperLOPIT2015) 
 ```
 
-The `hyperLOPIT2015` dataset is a high resolution spatial proteomics dataset
-generated from pluripotent mouse embryonic stem cells (E14TG2a) [@Christoforou:2016]. 
-All the functions in the `pRolocGUI` package rely on an 
-`MSnSet` object (or `MSnSetList` of length 2) as input. Users are referred to the 
+
+
+All the functions in the `pRolocGUI` 
+package rely on an `MSnSet` object (or `MSnSetList` of length 2) as input. Users are referred to the 
 `vignette("MSnbase-io")` or the `pRoloc` workflow for a step-by-step guide 
 on how to create and import their own `MSnSet` datasets.
 
