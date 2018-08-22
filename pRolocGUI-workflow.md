@@ -11,9 +11,7 @@ bibliography: refs
 output: BiocWorkflowTools::f1000_article
 ---
 
-```{r env, echo=FALSE}
-suppressPackageStartupMessages(library("BiocStyle"))
-```
+
 
 
 
@@ -34,26 +32,25 @@ the analysis quantitative mass spectrometry data.
 There are situtations however where programmatic data manipulation is
 not the most efficient way to explore the data, and where interactive
 graphical user interfaces (GUIs) offer great benefits. Since the
-availability of the `r CRANpkg("shiny")` package [@shiny], it has
+availability of the *[shiny](https://CRAN.R-project.org/package=shiny)* package [@shiny], it has
 become relatively easy for R programmers to develop such interfaces.
 It however remains important to keep the principles of reproducible
 and rigorous data analysis at the finger tips of the users by allowing
 one to easily transfer findings from both interfaces, programmatic and
 graphical. 
 
-To this end we have created the `r Biocpkg("pRolocGUI")` package for 
+To this end we have created the *[pRolocGUI](http://bioconductor.org/packages/pRolocGUI)* package for 
 the interactive visualisation and analysis of quantitative spatial 
 proteomics data. In this workflow we provide a step-by-step guide to
-show users the full functionality of the `r Biocpkg("pRolocGUI")` 
+show users the full functionality of the *[pRolocGUI](http://bioconductor.org/packages/pRolocGUI)* 
 package through a real life use case.
 
 
 # Implementation
-The package uses the interactive `r CRANpkg("shiny")` framework 
-[@shiny] and is based on the `MSnSet` class definitions of `r 
-Biocpkg("MSnbase")` and on the functions defined in the 
-`r Biocpkg("pRoloc")` package. Building on the existing functionality 
-of these packages, `r Biocpkg("pRolocGUI")` works straight 
+The package uses the interactive *[shiny](https://CRAN.R-project.org/package=shiny)* framework 
+[@shiny] and is based on the `MSnSet` class definitions of *[MSnbase](http://bioconductor.org/packages/MSnbase)* and on the functions defined in the 
+*[pRoloc](http://bioconductor.org/packages/pRoloc)* package. Building on the existing functionality 
+of these packages, *[pRolocGUI](http://bioconductor.org/packages/pRolocGUI)* works straight 
 out-of-the-box for already defined `MSnSet` datasets. This gives users 
 the benefit of interactive data exploration within a formal and
 reproducible pipeline.
@@ -61,7 +58,7 @@ reproducible pipeline.
 
 # Which app should I use?  
 There are 4 applications (apps) distributed with 
-`r Biocpkg("pRolocGUI")`; these apps are called `main`, `classify`, 
+*[pRolocGUI](http://bioconductor.org/packages/pRolocGUI)*; these apps are called `main`, `classify`, 
 `compare` and `aggregation`. Each one is designed to address a 
 different specific user requirement and takes a `MSnSet` (or 
 `MSnSetList`) data structure as input. All apps features an  
@@ -102,8 +99,8 @@ Following on from our spatial proteomics data analysis workflow
 technology [@Christoforou:2016] from mouse embryonic stem cells to
 showcase the main features of each interactive application. These 
 data, along with tens of other pre-formatted `MSnSet` datasets 
-are available in the `r Biocpkg("pRolocdata")` package. Before 
-embarking on this workflow and using `r Biocpkg("pRolocGUI")` 
+are available in the *[pRolocdata](http://bioconductor.org/packages/pRolocdata)* package. Before 
+embarking on this workflow and using *[pRolocGUI](http://bioconductor.org/packages/pRolocGUI)* 
 we strongly recommend some familiarity with the `MSnSet` class (see 
 `?MSnSet` for details) and the `pRoloc` vignette (see 
 `vignette("pRoloc-tutorial")`).
@@ -129,16 +126,17 @@ we strongly recommend some familiarity with the `MSnSet` class (see
 
 ## Package installation 
 
-The first step is to install the `r Biocpkg("pRolocGUI")` package 
+The first step is to install the *[pRolocGUI](http://bioconductor.org/packages/pRolocGUI)* package 
 from Bioconductor. Once R is started we can instal the package as
 follows:
 
-```{r installPkgs, message = FALSE, warning = FALSE, eval=FALSE} 
+
+```r
 source("https://bioconductor.org/biocLite.R")
 biocLite(c("pRolocGUI", "pRolocdata"))
 ```
 
-Note, we also install the `r Biocpkg("pRolocdata")` package which
+Note, we also install the *[pRolocdata](http://bioconductor.org/packages/pRolocdata)* package which
 contains tens of pre-formatted quantitative proteomics datasets 
 from various species. We will load datasets from this package to 
 demonstrate the package functionality during this workflow.
@@ -147,10 +145,11 @@ Once a package has been installed, it needs to be loaded for its
 functionality to become available in the R session; this is done 
 with the library function as shown in the code chunk below.
 
-```{r loadPkgs, message = FALSE, warning = FALSE} 
+
+```r
 library("pRolocGUI")
 library("pRolocdata")
-``` 
+```
 
 This procedure is also applicable to any R packages, from
 \href{https://cran.r-project.org/}{CRAN}, Bioconductor 
@@ -169,7 +168,8 @@ mouse embryonic stem cells (E14TG2a) [@Christoforou:2016].
 
 We load the dataset by using the function `data`.
 
-```{r loadData, echo = TRUE, message = FALSE, warning = FALSE}
+
+```r
 data(hyperLOPIT2015) 
 ```
 
@@ -209,7 +209,8 @@ results, generated from running a supervised machine learning analysis
 For example, to load the `"main"` `pRolocVis` application with the
 `hyperLOPIT2015` dataset:
 
-```{r example, eval = FALSE, echo = TRUE} 
+
+```r
 pRolocVis(object = hyperLOPIT2015, fcol = "markers") 
 ```
 
@@ -244,7 +245,8 @@ clicking on them at the top of the screen.
 
 To run the `main` application using `pRolocVis`: 
 
-```{r pca1, eval = FALSE, echo = TRUE} 
+
+```r
 pRolocVis(object = hyperLOPIT2015, fcol = "markers") 
 ```
 
@@ -353,7 +355,7 @@ niches), which can used to learn a classifier to associate unlabelled
 proteins to one of the sub-cellular classes that appear in the
 labelled training data.
 
-In the example below, we use one of the classification algorithms from the `r Biocpkg("pRoloc")`
+In the example below, we use one of the classification algorithms from the *[pRoloc](http://bioconductor.org/packages/pRoloc)*
 package; a Support Vector Machine (SVM) classifier, and train a model for
 protein localisation prediction of unassigned proteins in the
 `hyperLOPIT2015` dataset. We first use the `svmOptimisation` function
@@ -367,7 +369,8 @@ This tutorial also contains more information on machine learning, the practise
 of training and testing, and some extensive examples of machine learning 
 classification in spatial proteomics.)
 
-```{r classify, eval = TRUE, echo = TRUE, warning = FALSE, cache = TRUE} 
+
+```r
 opt <- svmOptimisation(object = hyperLOPIT2015, 
                        fcol = "markers", 
                        times = 3, verbose = FALSE)
@@ -392,7 +395,8 @@ set a threshold one can use the `classify` app.
 
 To launch the `classify` application:
 
-```{r cutoff, eval = FALSE, echo = TRUE} 
+
+```r
 pRolocVis(object = res, app = "classify", fcol = "svm") 
 ```
 
@@ -421,14 +425,15 @@ application can be closed and the class-specific scores are displayed in the
 R console. These scores can be used to get protein localisation predictions
 using the `getPredictions` function, as demonstrated below:
 
-```{r score, eval=FALSE}
+
+```r
 mythreshold <- pRolocVis(object = res, app = "classify", fcol = "svm") 
 res <- getPredictions(res, fcol = "svm", 
                       mcol = "markers", t = mythreshold)
 ```
 
 The classification app can also be used as an intercative version of 
-the function `orgQuants` in the `r Biocpkg("pRoloc")` package.
+the function `orgQuants` in the *[pRoloc](http://bioconductor.org/packages/pRoloc)* package.
 
 # The `compare` application
 
@@ -442,7 +447,8 @@ the two datasets one wishes to compare. In the example below
 we load two replicate datasets of mouse embryonic stem cells 
 produced using the hyperLOPIT technology.
 
-```{r compare, eval = FALSE, echo = TRUE} 
+
+```r
 data(hyperLOPIT2015ms3r1)
 data(hyperLOPIT2015ms3r2) 
 mydata <- MSnSetList(list(hyperLOPIT2015ms3r1, hyperLOPIT2015ms3r2))
